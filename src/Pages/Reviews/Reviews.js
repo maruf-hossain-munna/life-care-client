@@ -16,7 +16,7 @@ const Reviews = () => {
     return (
         <div>
             <h2 className="text-4xl">
-                Customers review
+                give us your special comment or review
             </h2>
 
             <div className='w-1/3 mx-auto p-10 shadow-2xl rounded-xl my-10'>
