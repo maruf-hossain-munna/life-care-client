@@ -6,11 +6,11 @@ const TopHomeBanner = () => {
         <div>
             <div className="hero py-10 shadow-2xl mb-10 rounded-lg">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className='w-1/2'>
+                    <div className='lg:w-1/2 w-full'>
                         <img src="https://github.com/maruf21hossain/life-care-image/blob/main/doctor2.jpg?raw=true" alt=''
                             className=" rounded-lg " />
                     </div>
-                    <div className='w-1/2 px-4'>
+                    <div className='lg:w-1/2 w-full px-4'>
                         <h1 className="text-4xl font-bold">Dr. MARUF HOSSAIN MUNNA</h1>
                         <p>MBBS(dhaka), BCS(health) <br /> DICM(dhaka)</p>
                         <p className="py-6">This is Dr. Maruf Hossain Munna. MBBS(dhaka), BCS(health) DICM(dhaka). <br />
