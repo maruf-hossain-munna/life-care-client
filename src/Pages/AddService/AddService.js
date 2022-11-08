@@ -7,29 +7,49 @@ const AddService = () => {
     const handleSubmit = event =>{
         event.preventDefault();
         const form = event.target;
-        const name = user?.name || form.name.value;
+        const serviceName = form.serviceName.value;
+        const price = form.price.value;
         const photoURL = form.photoURL.value;
         const email = user?.email;
-        const review = form.review.value;
+        const description = form.description.value;
 
         const service = {
-            
-        }
-        console.log(name, photoURL, email, review);
+            title : serviceName,
+            email,
+            price,
+            img : photoURL,
+            description,
+        };
+        fetch('http://localhost:5000/allServices', {
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(service)
+        })
+        .then( res => res.json())
+        .then( data => {
+            console.log(data);
+            if(data.acknowledged){
+                alert(' New Service added successful');
+                form.reset();
+            }
+        })
+        .catch( err => console.error(err))
     }
 
     return (
         <div>
             
-
-            <div className='w-1/3 mx-auto p-10 shadow-2xl rounded-xl my-10'>
+            <div className='lg:w-1/3 w-full mx-auto p-10 shadow-2xl rounded-xl my-10'>
                 <form onSubmit={handleSubmit} className='grid grid-cols-1 gap-8'>
-                    <h2 className='text-3xl font-semibold text-center'>Your Reviews</h2>
-                    <input type="text" defaultValue={user?.name}  name='name' placeholder="Name" className="input input-bordered w-full " />
-                    <input type="text"  name='photoURL' placeholder="Photo URL" className="input input-bordered w-full " />
+                    <h2 className='text-3xl font-semibold text-center'>Add Any Service </h2>
+                    <input type="text"   name='serviceName' placeholder="Service Name" className="input input-bordered w-full " />
+                    <input type="number"   name='price' placeholder="Price" className="input input-bordered w-full " />
+                    <input type="text"  name='photoURL' placeholder=" Service Photo URL" className="input input-bordered w-full " />
                     <input type="email" defaultValue={user?.email} readOnly name='email'  placeholder="Email" className="input input-bordered w-full " />
 
-                    <textarea name='review' className="textarea textarea-bordered" placeholder="Your Review"></textarea>
+                    <textarea name='description' className="textarea textarea-bordered" placeholder="Add Description"></textarea>
                     <input type="submit" className="btn btn-primary" value="Submit" />
                 </form>
             </div>

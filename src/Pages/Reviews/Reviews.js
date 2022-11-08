@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Authcontext } from '../../Contexts/AuthProvider/AuthProvider';
 
+
 const Reviews = ({service}) => {
     // console.log(service);
     const { img, description, title, _id, price } = service;
@@ -35,7 +36,7 @@ const reviewText = form.reviewText.value;
         .then(data => {
             console.log(data);
             if(data.acknowledged){
-                alert(' Review successful');
+                alert(' Review added successful');
                 form.reset();
             }
         })
@@ -58,6 +59,7 @@ const reviewText = form.reviewText.value;
                     <input type="submit" className="btn btn-primary" value="Submit" />
                 </form>
             </div>
+
         </div>
     );
 };
