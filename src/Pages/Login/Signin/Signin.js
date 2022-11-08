@@ -1,12 +1,36 @@
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Authcontext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const Signin = () => {
-    const { login } = useContext(Authcontext);
+    const { login, providerLogin } = useContext(Authcontext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname;
+
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
+    const handleGoogleSignin = (provider) => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate('/');
+            })
+            .catch(error => console.error(error))
+    }
+
+    const handleGithubSignIn = (provider) => {
+        providerLogin(githubProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate('/');
+            })
+            .catch(error => console.error(error))
+    }
 
     const handleLogin = event => {
         event.preventDefault();
@@ -37,7 +61,7 @@ const Signin = () => {
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-6">
                         <form onSubmit={handleLogin} className="card-body">
                             <h1 className="text-5xl font-bold text-center">Sign in</h1>
-                            
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -55,8 +79,17 @@ const Signin = () => {
                                 <input className="btn btn-primary" type="submit" value="Sign In" />
 
                             </div>
+                            <p className='text-center mb-4'>New user? Please <Link className='text-orange-600 font-semibold' to='/signup'>Sign Up</Link></p>
+                            <button
+                                onClick={handleGoogleSignin}
+                                className="btn btn-outline btn-primary  w-full"
+                            >Sign In with Google</button>
+
+                            <button onClick={handleGithubSignIn} className="btn btn-outline">Github</button>
                         </form>
-                        <p className='text-center mb-4'>New user? Please <Link className='text-orange-600 font-semibold' to='/signup'>Sign Up</Link></p>
+
+
+
                     </div>
                 </div>
             </div>
