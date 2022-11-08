@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TopHomeBanner = () => {
     return (
@@ -12,8 +13,12 @@ const TopHomeBanner = () => {
                     <div className='w-1/2 px-4'>
                         <h1 className="text-4xl font-bold">Dr. MARUF HOSSAIN MUNNA</h1>
                         <p>MBBS(dhaka), BCS(health) <br /> DICM(dhaka)</p>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <button className="btn btn-primary">Get Started</button>
+                        <p className="py-6">This is Dr. Maruf Hossain Munna. MBBS(dhaka), BCS(health) DICM(dhaka). <br />
+                            This is my personal service center. I will give you this service. If you need any service, please Booking your service and always with us. Thanks</p>
+                        
+                        <Link to='/services'>
+                        <button className="btn btn-primary">Get Started </button>
+                        </Link>
                     </div>
                 </div>
             </div>

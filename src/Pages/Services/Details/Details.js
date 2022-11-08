@@ -1,5 +1,8 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+import Reviews from '../../Reviews/Reviews';
 
 const Details = () => {
     const service = useLoaderData();
@@ -8,7 +11,14 @@ const Details = () => {
     return (
         <div className='container mx-auto mt-4'>
             <div className="card w-1/2 bg-base-100 shadow-xl mx-auto">
-                <figure><img src={img} alt="Shoes" /></figure>
+
+                <PhotoProvider>
+                    <PhotoView src={img}>
+                        <img src={img} alt="Shoes" />
+                    </PhotoView>
+                </PhotoProvider>
+
+                {/* <figure><img src={img} alt="Shoes" /></figure> */}
                 <div className="card-body">
                     <h2 className="card-title font-bold"> {title} </h2>
                     <p>
@@ -19,6 +29,10 @@ const Details = () => {
                         <button className="btn btn-primary">Book Now</button>
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <Reviews></Reviews>
             </div>
         </div>
     );

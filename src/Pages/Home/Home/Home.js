@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import BottomBanner from './BottomBanner';
 import HomeServiceCard from './HomeServiceCard';
 import TopHomeBanner from './TopHomeBanner';
 
@@ -10,6 +11,9 @@ const Home = () => {
         <div className='container mx-auto'>
             <TopHomeBanner></TopHomeBanner>
 
+            <h2 className="text-4xl font-bold text-orange-600 mb-6 ">
+                Our Services
+            </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     services.map(service => <HomeServiceCard
@@ -23,6 +27,8 @@ const Home = () => {
                     <button className="btn btn-outline btn-primary px-12 ">See More</button>
                 </Link>
             </div>
+
+            <BottomBanner></BottomBanner>
         </div>
     );
 };
