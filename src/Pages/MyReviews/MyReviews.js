@@ -4,14 +4,24 @@ import { Authcontext } from '../../Contexts/AuthProvider/AuthProvider';
 import MyReviewCard from './MyReviewCard';
 
 const MyReviews = () => {
-    const { user } = useContext(Authcontext);
+    const { user, logOut } = useContext(Authcontext);
     const [reviews, setreviews] = useState([]);
+    const [loadingAgain, setLoadingAgain] = useState(0);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myReviews?email=${user.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/myReviews?email=${user?.email}`, {
+            headers: {
+                authorization : `Bearer ${localStorage.getItem('lifeCare-token')}`
+            }
+        })
+            .then(res => {
+                if(res.status === 401 || res.status === 403){
+                    logOut();
+                }
+                return res.json()
+            })
             .then(data => setreviews(data))
-    }, [user?.email])
+    }, [user?.email, loadingAgain])
 
 
     const handleDeleteReview = (_id) => {
@@ -39,7 +49,7 @@ const MyReviews = () => {
         const reviewText = form.reviewText.value;
         console.log(reviewText);
         const updateReview = {
-            reviewText,
+            updateReviewText : reviewText,
         }
 
         fetch(`http://localhost:5000/myReviews/${_id}`, {
@@ -50,7 +60,13 @@ const MyReviews = () => {
             body:  JSON.stringify(updateReview)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            if(data.modifiedCount > 0){
+                alert('Successfully Updated')
+                setLoadingAgain(loadingAgain + 1)
+            }
+        })
     }
 
     return (

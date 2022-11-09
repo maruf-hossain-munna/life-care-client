@@ -5,11 +5,9 @@ import { Authcontext } from '../../Contexts/AuthProvider/AuthProvider';
 const MyReviewCard = ({ review, handleDeleteReview, handleUpdateReview }) => {
     const { reviewProName, photoURL, reviewText, reviewerName, _id } = review;
 
-
-
+console.log(review);
     return (
         <div>
-            {/* <h2>{reviewProName}</h2> */}
             <div className='p-8 shadow-xl rounded-xl'>
 
                 <div className='flex justify-between items-center'>
@@ -42,7 +40,7 @@ const MyReviewCard = ({ review, handleDeleteReview, handleUpdateReview }) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <form onSubmit={handleUpdateReview} >
+                    <form onSubmit={(event)=> handleUpdateReview (event, _id)} >
                         <h2 className="text-2xl font-bold my-4 text-center"> Please Update Your Review </h2>
                         <textarea name='reviewText' className="textarea textarea-bordered w-full" required placeholder="Your Review"></textarea>
 
@@ -58,6 +56,9 @@ const MyReviewCard = ({ review, handleDeleteReview, handleUpdateReview }) => {
                 </div>
             </div>
         </div>
+        // <div>
+
+        // </div>
     );
 };
 

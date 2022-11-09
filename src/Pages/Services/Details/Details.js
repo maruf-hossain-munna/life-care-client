@@ -23,11 +23,11 @@ const Details = () => {
         .then( res => res.json())
         .then(data => setReviews(data))
     }  ,[]);
-    // console.log(reviews);
+    console.log(reviews);
 
-    const handleNavigate = () =>{
-        navigate('/signin')
-    }
+    // const handleNavigate = () =>{
+    //     navigate('/signin')
+    // }
 
     return (
         <div className='container mx-auto mt-4'>

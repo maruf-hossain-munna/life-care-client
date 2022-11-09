@@ -60,7 +60,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn btn-outline btn-primary">Appointment</button>
+                    <button className="btn  btn-ghost">Appointment</button>
                 </div>
             </div>
         </div>
