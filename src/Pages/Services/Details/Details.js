@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import Reviews from '../../Reviews/Reviews';
+import MyReviewCard from '../../MyReviews/MyReviewCard';
+
+
 
 const Details = () => {
     const service = useLoaderData();
     const { img, description, title, _id, price } = service;
-    console.log(service);
+    // console.log(service);
+
+    const [reviews, setReviews] = useState({});
+
+    useEffect( () =>{
+        fetch('http://localhost:5000/reviews')
+        .then( res => res.json())
+        .then(data => setReviews(data))
+    }  ,[]);
+    console.log(reviews);
+
     return (
         <div className='container mx-auto mt-4'>
             <div className="card lg:w-1/2 w-full bg-base-100 shadow-xl mx-auto">
@@ -30,6 +43,15 @@ const Details = () => {
                     </div>
                 </div>
             </div>
+
+            {/* <div>
+                {
+                    reviews.map( review => <MyReviewCard
+                        key={review._id}
+                        review={review}
+                    ></MyReviewCard>)
+                }
+            </div> */}
 
             <div>
                 <Reviews

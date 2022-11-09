@@ -16,7 +16,7 @@ const HomeServiceCard = ({ service }) => {
                 </PhotoProvider>
                 <div className="card-body">
                     <h2 className="card-title font-bold"> {title} </h2>
-                    <p> {description.slice(0, 100)} </p>
+                    <p> {description.slice(0, 100)}... </p>
                     <h2 className="text-xl font-semibold text-orange-600"> Price: {price}$ </h2>
                     
                     <Link to={`/services/${_id}`}>
