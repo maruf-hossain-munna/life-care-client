@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { Authcontext } from '../../../Contexts/AuthProvider/AuthProvider';
 
@@ -26,6 +27,10 @@ const SignUp = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Life Care Sign up</title>
+            </Helmet>
+            
             <div className="hero w-full my-20">
                 <div className="hero-content grid gap-10 md:grid-cols-2 flex-col lg:flex-row">
                     <div className="text-center lg:text-left">

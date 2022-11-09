@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Authcontext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const AddService = () => {
@@ -40,6 +41,9 @@ const AddService = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Life Care Add Service</title>
+            </Helmet>
             
             <div className='lg:w-1/3 w-full mx-auto p-10 shadow-2xl rounded-xl my-10'>
                 <form onSubmit={handleSubmit} className='grid grid-cols-1 gap-8'>

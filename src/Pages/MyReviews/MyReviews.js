@@ -1,39 +1,65 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Authcontext } from '../../Contexts/AuthProvider/AuthProvider';
 import MyReviewCard from './MyReviewCard';
 
 const MyReviews = () => {
-    const {user} = useContext(Authcontext);
+    const { user } = useContext(Authcontext);
     const [reviews, setreviews] = useState([]);
 
-    useEffect( () =>{
+    useEffect(() => {
         fetch(`http://localhost:5000/myReviews?email=${user.email}`)
-        .then(res => res.json())
-        .then( data => setreviews(data))
-    } ,[user?.email])
+            .then(res => res.json())
+            .then(data => setreviews(data))
+    }, [user?.email])
 
 
-    const handleDeleteReview = (_id) =>{
+    const handleDeleteReview = (_id) => {
         // console.log(_id);
         const proceed = window.confirm('Are you sure to delete your review?');
-        if(proceed){
+        if (proceed) {
             fetch(`http://localhost:5000/myReviews/${_id}`, {
                 method: 'DELETE'
             })
-            .then(res => res.json())
-            .then( data => {
-                console.log(data);
-                if(data.deletedCount > 0){
-                    alert('Deleted Successful');
-                    const remaining = reviews.filter( rvw => rvw._id !== _id);
-                    setreviews(remaining);
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        alert('Deleted Successful');
+                        const remaining = reviews.filter(rvw => rvw._id !== _id);
+                        setreviews(remaining);
+                    }
+                })
         }
     };
 
+    const handleUpdateReview = (event, _id) => {
+        event.preventDefault();
+        const form = event.target;
+        const reviewText = form.reviewText.value;
+        console.log(reviewText);
+        const updateReview = {
+            reviewText,
+        }
+
+        fetch(`http://localhost:5000/myReviews/${_id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body:  JSON.stringify(updateReview)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
     return (
         <div className='container mx-auto'>
+
+            <Helmet>
+                <title>Life Care My Reviews</title>
+            </Helmet>
+
             <h2 className="text-3xl font-bold text-center mb-6">
                 You have {reviews.length} reviews
             </h2>
@@ -44,7 +70,8 @@ const MyReviews = () => {
                         key={review._id}
                         review={review}
                         handleDeleteReview={handleDeleteReview}
-                    ></MyReviewCard> )
+                        handleUpdateReview={handleUpdateReview}
+                    ></MyReviewCard>)
                 }
             </div>
         </div>

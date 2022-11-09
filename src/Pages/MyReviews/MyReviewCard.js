@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Authcontext } from '../../Contexts/AuthProvider/AuthProvider';
 
-const MyReviewCard = ({ review, handleDeleteReview }) => {
+const MyReviewCard = ({ review, handleDeleteReview, handleUpdateReview }) => {
     const { reviewProName, photoURL, reviewText, reviewerName, _id } = review;
-    const {loading} = useContext(Authcontext);
+
 
 
     return (
@@ -21,7 +21,8 @@ const MyReviewCard = ({ review, handleDeleteReview }) => {
                     </div>
 
                     <div className='flex'>
-                        <button className='btn-ghost px-4 py-2 rounded-lg'> <FaEdit></FaEdit>  </button>
+                        <label htmlFor="my-modal" className="btn btn-ghost"> <FaEdit></FaEdit> </label>
+                        {/* <button className='btn-ghost px-4 py-2 rounded-lg'> <FaEdit></FaEdit>  </button> */}
                         <button onClick={() => handleDeleteReview(_id)} className='btn-ghost px-4 py-2 rounded-lg'> <FaTrashAlt /> </button>
                     </div>
                 </div>
@@ -31,6 +32,30 @@ const MyReviewCard = ({ review, handleDeleteReview }) => {
                 <p> <span className='text-lg text-orange-600 font-semibold'> Review: </span>
                     {reviewText}  </p>
 
+            </div>
+
+            {/* The button to open modal */}
+            {/* <label htmlFor="my-modal" className="btn">open modal</label> */}
+
+            {/* Put this part before </body> tag */}
+            <input type="checkbox" id="my-modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box relative">
+                    <label htmlFor="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <form onSubmit={handleUpdateReview} >
+                        <h2 className="text-2xl font-bold my-4 text-center"> Please Update Your Review </h2>
+                        <textarea name='reviewText' className="textarea textarea-bordered w-full" required placeholder="Your Review"></textarea>
+
+                        <input type="submit" value="Update" className='btn' />
+
+                    </form>
+
+
+                    {/* <div className="modal-action">
+                        <label htmlFor="my-modal" className="btn">Update</label>
+                    </div> */}
+
+                </div>
             </div>
         </div>
     );

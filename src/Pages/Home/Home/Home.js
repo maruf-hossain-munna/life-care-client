@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useLoaderData } from 'react-router-dom';
 import BottomBanner from './BottomBanner';
 import HomeServiceCard from './HomeServiceCard';
@@ -9,6 +10,10 @@ const Home = () => {
     console.log(services);
     return (
         <div className='container mx-auto'>
+            <Helmet>
+                <title>Life Care Home</title>
+            </Helmet>
+
             <TopHomeBanner></TopHomeBanner>
 
             <h2 className="text-4xl font-bold text-orange-600 mb-6 ">
