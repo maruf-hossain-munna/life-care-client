@@ -8,7 +8,7 @@ const Signin = () => {
     const { login, providerLogin } = useContext(Authcontext);
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname;
+    const from = location.state?.from?.pathname || '/';
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -18,7 +18,7 @@ const Signin = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/');
+                navigate(from, {replace: true});
             })
             .catch(error => console.error(error))
     }
@@ -28,7 +28,7 @@ const Signin = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/');
+                navigate(from, {replace: true});
             })
             .catch(error => console.error(error))
     }
@@ -43,8 +43,7 @@ const Signin = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, {replace: true} || '/');
-                // navigate('/')
+                navigate(from, {replace: true});
                 form.reset();
             })
             .catch(error => console.log(error));

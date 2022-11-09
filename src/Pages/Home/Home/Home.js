@@ -19,7 +19,7 @@ const Home = () => {
             <h2 className="text-4xl font-bold text-orange-600 mb-6 ">
                 Our Services
             </h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10'>
                 {
                     services.map(service => <HomeServiceCard
                         key={service._id}
