@@ -8,10 +8,10 @@ const HomeServiceCard = ({ service }) => {
     return (
         <div>
 
-            <div className="card card-compact w-96 bg-base-100 shadow-xl">
+            <div className="card h-full card-compact w-96 bg-base-100 shadow-xl">
                 <PhotoProvider>
                     <PhotoView src={img}>
-                        <img src={img} alt="Shoes" />
+                        <img className='h-80 w-full object-cover'  src={img} alt="Shoes" />
                     </PhotoView>
                 </PhotoProvider>
                 <div className="card-body">

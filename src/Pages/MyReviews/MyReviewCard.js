@@ -5,7 +5,6 @@ import { Authcontext } from '../../Contexts/AuthProvider/AuthProvider';
 const MyReviewCard = ({ review, handleDeleteReview, handleUpdateReview }) => {
     const { reviewProName, photoURL, reviewText, reviewerName, _id } = review;
 
-console.log(review);
     return (
         <div>
             <div className='p-8 shadow-xl rounded-xl'>
@@ -49,16 +48,10 @@ console.log(review);
                     </form>
 
 
-                    {/* <div className="modal-action">
-                        <label htmlFor="my-modal" className="btn">Update</label>
-                    </div> */}
-
                 </div>
             </div>
         </div>
-        // <div>
-
-        // </div>
+      
     );
 };
 

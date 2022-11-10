@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const BottomBanner = () => {
     return (
         <div className='rounded-lg my-10'>
-            <div className="hero min-h-screen rounded-lg " style={{ backgroundImage: `url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdj-yv9PeyDjIuuRXNLxwV520MhOdJAhLVxUn7NkUnpEuozAd59fJeWsNNAc2btZcEz28&usqp=CAU")` }}>
+            <div className="hero min-h-screen rounded-lg bg-cover" style={{ backgroundImage: `url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdj-yv9PeyDjIuuRXNLxwV520MhOdJAhLVxUn7NkUnpEuozAd59fJeWsNNAc2btZcEz28&usqp=CAU")` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">

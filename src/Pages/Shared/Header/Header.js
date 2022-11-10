@@ -16,21 +16,13 @@ const Header = () => {
         <li className='font-semibold'><Link to='/services'>Services</Link></li>
         <li className='font-semibold'><Link to='/blogs'>Blogs</Link></li>
         {
-            user?.uid || user?.email ?
+            user?.uid &&
                 <>
                     <li className='font-semibold'><Link to='/myreviews'>My Reviews</Link></li>
                     <li className='font-semibold'><Link to='/addService'>Add Service</Link></li>
 
-                    <li className='font-semibold'>
-                        <button onClick={handleLogout} className=' btn-ghost'>Log Out</button>
-                    </li>
-
                 </>
-                :
-                <>
-                    <li className='font-semibold'><Link to='/signin'>Sign in</Link></li>
-                    <li className='font-semibold'><Link to='/signup'>Sign up</Link></li>
-                </>
+              
         }
 
 
@@ -60,7 +52,15 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn  btn-ghost">Appointment</button>
+                    {
+                        user?.uid ?
+
+                            <button onClick={handleLogout} className='btn btn-ghost'>Log Out</button>
+
+                            :
+                            <Link to='/signin' className='btn btn-ghost'>Sign in</Link>
+
+                    }
                 </div>
             </div>
         </div>

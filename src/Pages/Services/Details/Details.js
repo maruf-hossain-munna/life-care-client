@@ -6,28 +6,30 @@ import Reviews from '../../Reviews/Reviews';
 import MyReviewCard from '../../MyReviews/MyReviewCard';
 import { Authcontext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import ReviewCard from './ReviewCard';
 
 
 
 const Details = () => {
-    const {user} = useContext(Authcontext);
+    const { user } = useContext(Authcontext);
     const service = useLoaderData();
     const { img, description, title, _id, price } = service;
     // console.log(service);
     const navigate = useNavigate();
+    const [loadingAgain, setLoadingAgain] = useState(0);
 
     const [reviews, setReviews] = useState([]);
 
-    useEffect( () =>{
-        fetch('http://localhost:5000/reviews')
-        .then( res => res.json())
-        .then(data => setReviews(data))
-    }  ,[]);
+    useEffect(() => {
+        fetch(`https://life-care-server.vercel.app/reviews?id=${_id}`)
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [_id, loadingAgain]);
     console.log(reviews);
 
-    // const handleNavigate = () =>{
-    //     navigate('/signin')
-    // }
+    const handleBooked = () =>{
+        alert('Booked Successful')
+    }
 
     return (
         <div className='container mx-auto mt-4'>
@@ -42,7 +44,7 @@ const Details = () => {
                     </PhotoView>
                 </PhotoProvider>
 
-                
+
                 <div className="card-body">
                     <h2 className="card-title font-bold"> {title} </h2>
                     <p>
@@ -50,32 +52,29 @@ const Details = () => {
                     </p>
                     <div className="card-actions justify-between mt-3">
                         <h2 className="text-2xl font-semibold text-orange-600"> Price: {price}$ </h2>
-                        <button className="btn btn-primary">Book Now</button>
+                        <button onClick={handleBooked} className="btn btn-primary">Book Now</button>
                     </div>
                 </div>
             </div>
 
             <div className='grid md:grid-cols-2 grid-cols-1 gap-8 mt-12'>
+                
                 {
-                    reviews.map( review => <MyReviewCard
+                    reviews.map(review => <ReviewCard
                         key={review._id}
                         review={review}
-                    ></MyReviewCard>)
+
+                    ></ReviewCard>)
                 }
             </div>
 
-            {/* <div>
-                {
-                    user?.email ?
-                    <button  className="btn btn-outline btn-primary">Button</button>
-                    :
-                    <button onClick={handleNavigate} className="btn btn-outline btn-primary">Button 2</button>
-                }
-            </div> */}
+            
 
             <div>
                 <Reviews
                     service={service}
+                    setLoadingAgain={setLoadingAgain}
+                    loadingAgain={loadingAgain}
                 ></Reviews>
             </div>
         </div>
