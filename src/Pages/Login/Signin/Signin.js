@@ -65,8 +65,6 @@ const Signin = () => {
                         form.reset();
                     })
 
-                // navigate(from, {replace: true});
-                // form.reset();
             })
             .catch(error => console.log(error));
     }
@@ -82,7 +80,7 @@ const Signin = () => {
                 <div className="hero-content grid gap-10 md:grid-cols-2 flex-col lg:flex-row">
                     <div className="text-center lg:text-left">
                         {/* <img className='w-3/4' src={loginImg} alt="" /> */}
-                        <img className='w-full' src="https://st.depositphotos.com/1907633/3137/i/950/depositphotos_31373959-stock-photo-medicine-doctor-working-with-modern.jpg" alt="" />
+                        <img className='w-full rounded-xl' src="https://st.depositphotos.com/1907633/3137/i/950/depositphotos_31373959-stock-photo-medicine-doctor-working-with-modern.jpg" alt="" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-6">
                         <form onSubmit={handleLogin} className="card-body">
@@ -111,7 +109,7 @@ const Signin = () => {
                                 className="btn btn-outline btn-primary  w-full"
                             >Sign In with Google</button>
 
-                            <button onClick={handleGithubSignIn} className="btn btn-outline">Github</button>
+                            <button onClick={handleGithubSignIn} className="btn btn-outline">Sign In with Github</button>
                         </form>
 
 

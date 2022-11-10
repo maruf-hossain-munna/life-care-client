@@ -8,17 +8,15 @@ const Footer = () => {
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <div>
                     <span className="footer-title">Services</span>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+                    <a className="link link-hover">Cardiology Service</a>
+                    <a className="link link-hover">Neurology Service</a>
+                    <a className="link link-hover">Nephrology Service</a>
+                    <a className="link link-hover">Gastrology Service</a>
                 </div>
                 <div>
-                    <span className="footer-title">Company</span>
+                    <span className="footer-title">Life Care</span>
                     <a className="link link-hover">About us</a>
                     <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
                 </div>
                 <div>
                     <span className="footer-title">Legal</span>

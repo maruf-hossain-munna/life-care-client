@@ -68,3 +68,27 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+-------------------------------------------------
+
+My Projects:---
+* WebSite Name:-  Life Care
+* Live Website link:- https://life-care-d7b0b.web.app 
+
+My Projects Summary:--
+* First create a react app and server side and login mongodb website.
+* Attached to the mongodb with server side.
+* then create Service api and pass client side
+* show 3 service in home page and see all button .if someone click this button show all service and move to service page.
+* Service card has img, price, service name and  short description.
+* if you click img this image will showing fully.
+* Then all service card have details page. If someone click details page they will go service details page and see full description. ans show this service reviews.
+* If he/she want to review this service they need to sign in must.
+* I use firebase for Authentication. It has email and password, github and google authentication.
+* And craete JWT token for authorization.
+* If you login my site i will show My reviews, add service and logout page. 
+* I create a privateRoute . If you are not registered person you can not review service, can't do Add any service.
+* if you add any service or review i will show this first by descending method.
+* this site have a subscription part and has a footer.
+
+------------------------------------------------------------------------------
