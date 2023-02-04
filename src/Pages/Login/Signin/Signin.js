@@ -1,5 +1,5 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Authcontext } from '../../../Contexts/AuthProvider/AuthProvider';
@@ -9,6 +9,7 @@ const Signin = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const {user} = useContext(Authcontext)
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -18,7 +19,7 @@ const Signin = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, { replace: true });
+                // navigate(from, { replace: true });
             })
             .catch(error => console.error(error))
     }
@@ -28,7 +29,7 @@ const Signin = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, { replace: true });
+                // navigate(from, { replace: true });
             })
             .catch(error => console.error(error))
     }
@@ -49,7 +50,7 @@ const Signin = () => {
                     email: user?.email
                 }
 
-                fetch('https://life-care-server.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -61,13 +62,19 @@ const Signin = () => {
                         console.log(data);
                         // set token in local storage
                         localStorage.setItem('lifeCare-token', data.token);
-                        navigate(from, { replace: true });
+                        // navigate(from, { replace: true });
                         form.reset();
                     })
 
             })
             .catch(error => console.log(error));
     }
+
+useEffect( () =>{
+    if(user?.uid && user){
+        navigate(from, { replace: true });
+    }
+} ,[user, navigate, from])
 
 
     return (
@@ -112,7 +119,7 @@ const Signin = () => {
                             <button onClick={handleGithubSignIn} className="btn btn-outline">Sign In with Github</button>
                         </form>
 
-
+{/* Just checkeed */}
 
                     </div>
                 </div>

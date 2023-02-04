@@ -18,7 +18,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('https://life-care-server.vercel.app/services')
+                loader: () => fetch('http://localhost:5000/services')
             },
             {
                 path: '/blogs',
@@ -31,17 +31,17 @@ const router = createBrowserRouter([
             {
                 path: '/myReviews',
                 element: <PrivateRoute> <MyReviews></MyReviews> </PrivateRoute>,
-                loader: () => fetch('https://life-care-server.vercel.app/reviews')
+                loader: () => fetch('http://localhost:5000/reviews')
             },
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: () => fetch('https://life-care-server.vercel.app/allServices')
+                loader: () => fetch('http://localhost:5000/allServices')
             },
             {
                 path: '/services/:id',
                 element: <Details></Details>   ,
-                loader: ({ params }) => fetch(`https://life-care-server.vercel.app/allServices/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/allServices/${params.id}`)
 
             },
             {

@@ -9,26 +9,30 @@ const MyReviews = () => {
     const [loadingAgain, setLoadingAgain] = useState(0);
 
     useEffect(() => {
-        fetch(`https://life-care-server.vercel.app/myReviews?email=${user?.email}`, {
+        fetch(`http://localhost:5000/myReviews?email=${user?.email}`, {
             headers: {
                 authorization : `Bearer ${localStorage.getItem('lifeCare-token')}`
             }
         })
             .then(res => {
                 if(res.status === 401 || res.status === 403){
-                    return logOut();
+                    console.log('login expired' );
+                    return logOut().then(() =>{}).catch(() =>{})
                 }
                 return res.json()
             })
-            .then(data => setreviews(data))
-    }, [user?.email, loadingAgain, logOut])
+        .then(data => {
+            console.log('data received');
+            setreviews(data)
+        })
+    }, [user?.email, loadingAgain , logOut])
 
 
     const handleDeleteReview = (_id) => {
         // console.log(_id);
         const proceed = window.confirm('Are you sure to delete your review?');
         if (proceed) {
-            fetch(`https://life-care-server.vercel.app/myReviews/${_id}`, {
+            fetch(`http://localhost:5000/myReviews/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -52,7 +56,7 @@ const MyReviews = () => {
             updateReviewText : reviewText,
         }
 
-        fetch(`https://life-care-server.vercel.app/myReviews/${_id}`, {
+        fetch(`http://localhost:5000/myReviews/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

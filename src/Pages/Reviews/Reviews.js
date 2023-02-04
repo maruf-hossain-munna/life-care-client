@@ -26,7 +26,7 @@ const Reviews = ({ service, setLoadingAgain, loadingAgain }) => {
 
         };
         console.log(_id);
-        fetch(`https://life-care-server.vercel.app/reviews`, {
+        fetch(`http://localhost:5000/reviews`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

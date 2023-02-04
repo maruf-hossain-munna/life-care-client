@@ -22,7 +22,7 @@ const AddService = () => {
             description,
             createDate : new Date()
         };
-        fetch('https://life-care-server.vercel.app/allServices', {
+        fetch('http://localhost:5000/allServices', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
